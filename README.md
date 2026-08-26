@@ -53,14 +53,6 @@ git clone https://github.com/<you>/refactoring-ui-skill.git .claude/skills/refac
 
 (Or add it as a git submodule at that path if you want to track updates.)
 
-### Via oh-my-claudecode
-
-If you use the [oh-my-claudecode](https://github.com/anthropics/oh-my-claudecode) plugin:
-
-```
-/oh-my-claudecode:skill add https://github.com/<you>/refactoring-ui-skill.git
-```
-
 Restart Claude Code (or start a new session) after installing so it picks up the new
 skill.
 
