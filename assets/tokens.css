@@ -1,0 +1,149 @@
+/* Refactoring UI — starter tokens.
+   Copy into a project and rename/retune. The point is to decide once, up front.
+   Ramps follow the book's rules: HSL, saturation rises as lightness leaves 50%,
+   greys are tinted (cool here — swap hue to ~39 for warm). */
+
+:root {
+  /* ---- Spacing & sizing: base 16, no two neighbours closer than ~25% ---- */
+  --space-1:   4px;   --space-2:   8px;   --space-3:  12px;   --space-4:  16px;
+  --space-5:  24px;   --space-6:  32px;   --space-7:  48px;   --space-8:  64px;
+  --space-9:  96px;   --space-10:128px;   --space-11:192px;   --space-12:256px;
+  --space-13:384px;   --space-14:512px;   --space-15:640px;   --space-16:768px;
+
+  /* ---- Type scale: px/rem only, never em ---- */
+  --text-xs:  12px;   --text-sm:  14px;   --text-base:16px;   --text-lg:  18px;
+  --text-xl:  20px;   --text-2xl: 24px;   --text-3xl: 30px;   --text-4xl: 36px;
+  --text-5xl: 48px;   --text-6xl: 60px;   --text-7xl: 72px;
+
+  /* ---- Weight: two, and nothing under 400 ---- */
+  --weight-normal: 400;
+  --weight-bold:   600;
+
+  /* ---- Line-height: inversely proportional to size ---- */
+  --leading-tight:   1;      /* 36px+ headlines */
+  --leading-snug:    1.25;   /* 20-30px */
+  --leading-normal:  1.5;    /* body, narrow measure */
+  --leading-loose:   1.75;   /* small text, or wide measure */
+  --measure: 34em;           /* 45-75 chars */
+
+  /* ---- Greys (cool). Almost all of a UI is grey.
+         Ratios below are vs --grey-100; on pure white each is ~10% higher. ---- */
+  --grey-100: hsl(210, 36%, 96%);   /* page background */
+  --grey-200: hsl(212, 33%, 89%);   /* borders, dividers */
+  --grey-300: hsl(211, 27%, 84%);
+  --grey-400: hsl(209, 23%, 60%);   /* DISABLED text only (2.7:1). WCAG exempts inactive
+                                       components — it does NOT exempt placeholders, which
+                                       are active content: use --grey-600 for those. */
+  --grey-500: hsl(210, 22%, 49%);   /*  3.9:1 — large text only (>=24px, or >=18.66px bold).
+                                       Not safe for 12px eyebrow labels. */
+  --grey-600: hsl(209, 28%, 39%);   /*  5.6:1 — tertiary text (footnotes, copyright) */
+  --grey-700: hsl(209, 34%, 30%);   /*  8.0:1 — secondary text */
+  --grey-800: hsl(211, 39%, 23%);   /* 10.7:1 */
+  --grey-900: hsl(209, 61%, 16%);   /* 13.4:1 — primary text */
+
+  /* ---- Primary. 500 is the shade that works as a button background. ---- */
+  --primary-100: hsl(205, 92%, 92%);  /* tinted background */
+  --primary-200: hsl(205, 97%, 85%);
+  --primary-300: hsl(205, 90%, 76%);
+  --primary-400: hsl(206, 82%, 58%);
+  --primary-500: hsl(208, 88%, 38%);  /* base — white text passes AA */
+  --primary-600: hsl(209, 88%, 33%);
+  --primary-700: hsl(211, 88%, 28%);
+  --primary-800: hsl(213, 88%, 23%);
+  --primary-900: hsl(215, 88%, 18%);  /* text on --primary-100 */
+
+  /* ---- Accents. 100 = tint, 500 = solid fill, 800 = text on the tint.
+         That trio is what "flip the contrast" needs. Expand to 9 if used heavily. ---- */
+  --red-100:   hsl(360, 100%, 95%);
+  --red-500:   hsl(360,  67%, 44%);
+  --red-800:   hsl(360,  85%, 25%);
+
+  --yellow-100:hsl( 49, 100%, 92%);
+  --yellow-500:hsl( 42, 100%, 29%);
+  --yellow-800:hsl( 38, 100%, 19%);
+
+  --green-100: hsl(152,  68%, 92%);
+  --green-500: hsl(154,  85%, 24%);
+  --green-800: hsl(156, 100%, 13%);
+
+  /* ---- Elevation. Pick by z-position, not by looks. ---- */
+  --shadow-1: 0 1px 3px   hsla(0, 0%, 0%, .2);   /* buttons */
+  --shadow-2: 0 4px 6px   hsla(0, 0%, 0%, .2);   /* dropdowns */
+  --shadow-3: 0 5px 15px  hsla(0, 0%, 0%, .2);
+  --shadow-4: 0 10px 24px hsla(0, 0%, 0%, .2);
+  --shadow-5: 0 15px 35px hsla(0, 0%, 0%, .2);   /* modals */
+
+  /* ---- Radius: pick one personality and hold it ---- */
+  --radius:      4px;   /* neutral. 0 = formal, 12px+ = playful */
+  --radius-full: 9999px;
+
+  /* ---- Border width: fixed, like everything else ---- */
+  --border-width:       1px;
+  --border-width-thick: 2px;  /* when a soft-colored 1px border reads too subtle */
+
+  /* ---- Opacity: fixed set, not a slider you eyeball each time ---- */
+  --opacity-1: .05;   /* hairline overlays */
+  --opacity-2: .1;    /* subtle tints, inset shadows on images */
+  --opacity-3: .2;    /* disabled controls */
+  --opacity-4: .4;    /* scrims under light text */
+  --opacity-5: .6;    /* dark overlay on photos */
+  --opacity-6: .8;    /* near-opaque overlay */
+
+  /* ---- Semantic roles. Reference these in components, not the raw ramps —
+         it's the only way the dark-mode block below can work. ---- */
+  --surface:         var(--grey-100);  /* page */
+  --surface-raised:  #fff;             /* cards — lighter than the page */
+  --surface-sunken:  var(--grey-200);  /* wells, inset areas */
+  --border:          var(--grey-300);  /* DECORATIVE dividers only (1.3:1). Distinct from
+                                          --surface-sunken on purpose: a bordered input
+                                          inside a well needs a visible edge. */
+  --border-strong:   var(--grey-500);  /* FUNCTIONAL borders — input outlines, checkbox
+                                          edges, focus rings. Anything that is the only
+                                          thing identifying a control needs 3:1 per WCAG
+                                          1.4.11. 3.9 on surface / 4.3 on raised / 3.3 in
+                                          a sunken well. */
+  --text-primary:    var(--grey-900);
+  --text-secondary:  var(--grey-700);
+  --text-tertiary:   var(--grey-600);
+  --text-disabled:   var(--grey-400);
+  --action:          var(--primary-500);
+  --action-text:     #fff;
+}
+
+/* Dark mode. Not a mechanical inversion — surfaces stack *upward* in lightness,
+   accents move to the light end of the ramp, and text sits a shade dimmer than
+   the light-mode equivalent. All *text* pairs verified >= 4.5:1; functional borders
+   are held to the 3:1 non-text bar instead (WCAG 1.4.11); decorative dividers and
+   disabled text are exempt from both. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface:        var(--grey-900);   /* never pure black */
+    --surface-raised: var(--grey-800);   /* raised = lighter, same as light mode. Only a
+                                            1.26:1 step, and shadows barely register here —
+                                            so give raised surfaces a --border-strong
+                                            hairline. Going lighter instead (grey-700) would
+                                            break --text-tertiary, which drops to 3.6:1. */
+    --surface-sunken: hsl(209, 61%, 12%);
+    --border:         var(--grey-700);   /* decorative only (1.7:1) */
+    --border-strong:  var(--grey-400);   /* functional, 3:1+. Note this goes *lighter* while
+                                            light mode goes darker — the mirror image
+                                            (grey-500) fails at 2.7:1 on a raised surface. */
+    --text-primary:   var(--grey-200);   /* 11.3:1 — grey-100 is too harsh here */
+    --text-secondary: var(--grey-300);   /*  10.0:1 */
+    --text-tertiary:  hsl(209, 23%, 66%);/*  6.1:1 base / 4.8:1 raised — sits between
+                                            grey-400 and grey-300, because grey-400 fails
+                                            (4.0:1) against a raised surface */
+    --text-disabled:  var(--grey-600);   /* 2.4:1 — near light mode's 2.7:1. grey-500
+                                            (3.4:1) reads *more* legible than light mode,
+                                            which is backwards for a disabled affordance. */
+    --action:         var(--primary-400);/* light fill + dark text, 5.2:1 */
+    --action-text:    var(--grey-900);
+
+    /* Shadows do little work on dark surfaces — lightness carries depth instead. */
+    --shadow-1: 0 1px 3px   hsla(0, 0%, 0%, .4);
+    --shadow-2: 0 4px 6px   hsla(0, 0%, 0%, .4);
+    --shadow-3: 0 5px 15px  hsla(0, 0%, 0%, .45);
+    --shadow-4: 0 10px 24px hsla(0, 0%, 0%, .5);
+    --shadow-5: 0 15px 35px hsla(0, 0%, 0%, .55);
+  }
+}
