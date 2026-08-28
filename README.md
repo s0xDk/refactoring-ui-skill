@@ -42,13 +42,13 @@ the skill's declared name.
 ### Personal skill (available in every project)
 
 ```sh
-git clone https://github.com/<you>/refactoring-ui-skill.git ~/.claude/skills/refactoring-ui
+git clone https://github.com/s0xDk/refactoring-ui-skill.git ~/.claude/skills/refactoring-ui
 ```
 
 ### Project skill (checked into a specific repo, shared with your team)
 
 ```sh
-git clone https://github.com/<you>/refactoring-ui-skill.git .claude/skills/refactoring-ui
+git clone https://github.com/s0xDk/refactoring-ui-skill.git .claude/skills/refactoring-ui
 ```
 
 (Or add it as a git submodule at that path if you want to track updates.)
